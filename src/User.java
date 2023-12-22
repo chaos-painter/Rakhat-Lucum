@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Objects;
+
 public class User {
     private int id;
     private String name;
@@ -9,9 +11,21 @@ public class User {
         this.group = group;
     }
     ArrayList<Book> Borrowedbooks = new ArrayList<Book>();
-    public void giveBook (String title){
-
-        this.Borrowedbooks.add();
+    public void giveBook (Library lib,String title ){
+        for(Book book : lib.getBooks()){
+            if(Objects.equals(book.getTitle(), title)){
+                book.decrement();
+                this.Borrowedbooks.add(book);
+            }
+        }
+    }
+    public void getBook (Library lib,String title ){
+        for(Book book : lib.getBooks()){
+            if(Objects.equals(book.getTitle(), title)){
+                book.increment();
+                this.Borrowedbooks.remove(book);
+            }
+        }
     }
     public void setId(int id){
         this.id=id;
@@ -24,7 +38,12 @@ public class User {
     }
     public void getInfo(){
         System.out.println(this.id+" "+this.name+" "+this.group);
+        for(Book book: Borrowedbooks){
+            System.out.println(book.getTitle());
+        }
     }
 
-
+    public int getId() {
+        return id;
+    }
 }

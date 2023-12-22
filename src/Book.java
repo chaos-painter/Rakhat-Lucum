@@ -10,4 +10,20 @@ public class Book {
        this.year = year;
        this.quantity = quantity;
    }
+    public String getTitle() {
+        return this.title;
+    }
+    public String getIsbn(){
+       return this.isbn;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void increment(){
+       this.quantity++;
+    }
+    public void decrement(){
+        this.quantity--;
+    }
 }
