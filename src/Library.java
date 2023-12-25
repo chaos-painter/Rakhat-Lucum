@@ -18,10 +18,18 @@ public class Library {
     }
 
     public void printbooks() {
-        final String ANSI_BLUE = "\u001B[34m";
+        final String ANSI_BLUE = "\u001B[32m";
         final String ANSI_RESET = "\u001B[0m";
         for (Book book : this.Books) {
             System.out.println(ANSI_BLUE + "\"" + book.getTitle() + "\" "+ ANSI_RESET + " : "+ book.getQuantity());
+        }
+    }
+
+    public void printusers() {
+        final String ANSI_BLUE = "\u001B[32m";
+        final String ANSI_RESET = "\u001B[0m";
+        for (User user : this.Users) {
+            user.getInfo();
         }
     }
 

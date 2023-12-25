@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -20,16 +21,7 @@ public class Main {
             lib.addBook(new Book("The Hobbit", "7890123456", "Fantasy", "J.R.R. Tolkien", 1937, 8));
             lib.addBook(new Book("Pride and Prejudice", "8901234567", "Classic Romance", "Jane Austen", 1813, 3));
             lib.addBook(new Book("Harry Potter and the Sorcerer's Stone", "9012345678", "Fantasy", "J.K. Rowling", 1997, 10));
-            lib.addBook(new Book("The Diary of a Young Girl", "1234567809", "Biography", "Anne Frank", 1947, 6));
-            lib.addBook(new Book("Brave New World", "2345678902", "Dystopian", "Aldous Huxley", 1932, 5));
-            lib.addBook(new Book("The Lord of the Rings", "3456789013", "Fantasy", "J.R.R. Tolkien", 1954, 7));
-            lib.addBook(new Book("The Alchemist", "4567890124", "Fiction", "Paulo Coelho", 1988, 6));
-            lib.addBook(new Book("Crime and Punishment", "5678901235", "Classic", "Fyodor Dostoevsky", 1866, 4));
-            lib.addBook(new Book("Don Quixote", "6789012346", "Classic", "Miguel de Cervantes", 1615, 4));
-            lib.addBook(new Book("The Divine Comedy", "7890123457", "Epic Poetry", "Dante Alighieri", 1320, 3));
-            lib.addBook(new Book("The Picture of Dorian Gray", "8901234568", "Classic", "Oscar Wilde", 1890, 5));
-            lib.addBook(new Book("The Shining", "9012345679", "Horror", "Stephen King", 1977, 5));
-            lib.addBook(new Book("Angels & Demons", "0123456789", "Thriller", "Dan Brown", 2000, 7));
+
         }
 
         {lib.addUser(new User(1, "John Doe", "Group A"));
@@ -41,7 +33,8 @@ public class Main {
             System.out.println("2) To show all available books;");
             System.out.println("3) To add a new user;");
             System.out.println("4) To give a certain book to a certain user;");
-            System.out.println("5) To return a book back to the library from user.");}
+            System.out.println("5) To return a book back to the library from user.");
+            System.out.println("6) To show all available users");}
             int choice = in.nextInt();
             in.nextLine();
             switch (choice) {
@@ -74,7 +67,19 @@ public class Main {
                 {System.out.println("ID:");
                     int id = in.nextInt();
                     in.nextLine();
-
+                    boolean idExists;
+                    do {
+                        idExists = false;
+                        for(User user: lib.getUsers()){
+                            if(id == user.getId()){
+                                System.out.println("insert another ID");
+                                id = in.nextInt();
+                                idExists = true;
+                                in.nextLine();
+                                break;
+                            }
+                        }
+                    } while (idExists);
                     System.out.println("Name:");
                     String name = in.nextLine();
 
@@ -109,6 +114,10 @@ public class Main {
                         }
                     }
                     break;
+                case 6:
+                    lib.printusers();
+                    break;
+
                 default:
                     System.out.println("Exiting...");
                     return;
