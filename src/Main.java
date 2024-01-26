@@ -12,22 +12,22 @@ public class Main {
         p1.getInfo();
 
         {
-            lib.addBook(new Book("To Kill a Mockingbird", "1234567890", "Classic", "Harper Lee", 1960, 5));
-            lib.addBook(new Book("1984", "2345678901", "Dystopian", "George Orwell", 1949, 4));
-            lib.addBook(new Book("The Great Gatsby", "3456789012", "Classic", "F. Scott Fitzgerald", 1925, 6));
-            lib.addBook(new Book("One Hundred Years of Solitude", "4567890123", "Magical Realism", "Gabriel Garcia Marquez", 1967, 7));
-            lib.addBook(new Book("A Brief History of Time", "5678901234", "Science", "Stephen Hawking", 1988, 5));
-            lib.addBook(new Book("The Catcher in the Rye", "6789012345", "Classic", "J.D. Salinger", 1951, 4));
-            lib.addBook(new Book("The Hobbit", "7890123456", "Fantasy", "J.R.R. Tolkien", 1937, 8));
-            lib.addBook(new Book("Pride and Prejudice", "8901234567", "Classic Romance", "Jane Austen", 1813, 3));
-            lib.addBook(new Book("Harry Potter and the Sorcerer's Stone", "9012345678", "Fantasy", "J.K. Rowling", 1997, 10));
+            lib.addBook(new Book("TKM", "1234567890", "Classic", "Harper Lee", 1960, 5,1));
+            lib.addBook(new Book("1984", "2345678901", "Dystopian", "George Orwell", 1949, 4,2));
+            lib.addBook(new Book("The Great Gatsby", "3456789012", "Classic", "F. Scott Fitzgerald", 1925, 6,1));
+            lib.addBook(new Book("One Hundred Years of Solitude", "4567890123", "Magical Realism", "Gabriel Garcia Marquez", 1967, 7,2));
+            lib.addBook(new Book("A Brief History of Time", "5678901234", "Science", "Stephen Hawking", 1988, 5,1));
+            lib.addBook(new Book("The Catcher in the Rye", "6789012345", "Classic", "J.D. Salinger", 1951, 4,1));
+            lib.addBook(new Book("The Hobbit", "7890123456", "Fantasy", "J.R.R. Tolkien", 1937, 8,1));
+            lib.addBook(new Book("Pride and Prejudice", "8901234567", "Classic Romance", "Jane Austen", 1813, 3,1));
+            lib.addBook(new Book("Harry Potter and the Sorcerer's Stone", "9012345678", "Fantasy", "J.K. Rowling", 1997, 10,1));
 
         }
 
-        {lib.addUser(new User(1, "John Doe", "Group A"));
-        lib.addUser(new User(2, "Jane Smith", "Group B"));
-        lib.addUser(new User(3, "Alice Johnson", "Group C"));
-        lib.addUser(new User(4, "Bob Brown", "Group A"));}
+        {lib.addUser(new Student(1, "John Doe", "Group A"));
+        lib.addUser(new Staff(2, "Jane Smith", "Group B"));
+        lib.addUser(new Student(3, "Alice Johnson", "Group C"));
+        lib.addUser(new Staff(4, "Bob Brown", "Group A"));}
         while (true){
             {System.out.println("1) To add a new book;");
             System.out.println("2) To show all available books;");
@@ -58,7 +58,12 @@ public class Main {
                     System.out.println("Quantity");
                     int quantity = in.nextInt();
                     in.nextLine();
-                    lib.addBook(new Book(title,isbn,genre,author,year,quantity));}
+
+                    System.out.println("Quantity");
+                    int clearance = in.nextInt();
+                    in.nextLine();
+
+                    lib.addBook(new Book(title,isbn,genre,author,year,quantity,clearance));}
                     break;
                 case 2:
                     lib.printbooks();
@@ -94,12 +99,7 @@ public class Main {
                     String title1=in.nextLine();
                     System.out.println("ID");
                     int id1=in.nextInt();
-                    for(User user: lib.getUsers()){
-                        if(id1==user.getId()){
-                            user.giveBook(lib,title1);
-                            user.getInfo();
-                        }
-                    }
+                    lib.giveBook(title1,id1);
                     break;
                 case 5:
 
@@ -107,12 +107,7 @@ public class Main {
                     String title = in.nextLine();
                     System.out.println("ID");
                     int id=in.nextInt();
-                    for(User user: lib.getUsers()){
-                        if(id==user.getId()){
-                            user.getBook(lib,title);
-                            user.getInfo();
-                        }
-                    }
+                    lib.getBook(title,id);
                     break;
                 case 6:
                     lib.printusers();
