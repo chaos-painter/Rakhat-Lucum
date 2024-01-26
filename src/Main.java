@@ -91,7 +91,23 @@ public class Main {
                     System.out.println("Group:");
                     String group = in.nextLine();
 
-                    lib.addUser(new User(id, name, group));}
+                    System.out.println("Rank:");
+                    System.out.println("Option 1: add student");
+                    System.out.println("Option 2: add staff");
+                    int option = in.nextInt();
+                    switch(option){
+                        case 1:
+                            lib.addStudent(new Student(id, name, group));
+                            break;
+                        case 2:
+                            lib.addStaff(new Staff(id, name, group));
+                            break;
+                        default:
+                            lib.addUser(new User(id, name, group));
+                            break;
+                    }
+
+                    }
                     break;
                 case 4:
 

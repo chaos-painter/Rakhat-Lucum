@@ -8,6 +8,14 @@ public class Library {
     public void addBook(Book book) {
         this.Books.add(book);
     }
+
+    public void addStudent(Student student) {
+        this.Users.add(student);
+    }
+
+    public void addStaff(Staff staff) {
+        this.Users.add(staff);
+    }
     public void addUser(User user) {
         this.Users.add(user);
     }
