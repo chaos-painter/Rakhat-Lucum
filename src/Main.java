@@ -1,8 +1,26 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Main {
+    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/library";
+    private static final String USERNAME = "postgres";
+    private static final String PASSWORD = "1234";
+
     public static void main(String[] args) {
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+
+
+            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
 
         Scanner in = new Scanner(System.in);
 
@@ -25,16 +43,16 @@ public class Main {
         }
 
         {lib.addUser(new Student(1, "John Doe", "Group A"));
-        lib.addUser(new Staff(2, "Jane Smith", "Group B"));
-        lib.addUser(new Student(3, "Alice Johnson", "Group C"));
-        lib.addUser(new Staff(4, "Bob Brown", "Group A"));}
+            lib.addUser(new Staff(2, "Jane Smith", "Group B"));
+            lib.addUser(new Student(3, "Alice Johnson", "Group C"));
+            lib.addUser(new Staff(4, "Bob Brown", "Group A"));}
         while (true){
             {System.out.println("1) To add a new book;");
-            System.out.println("2) To show all available books;");
-            System.out.println("3) To add a new user;");
-            System.out.println("4) To give a certain book to a certain user;");
-            System.out.println("5) To return a book back to the library from user.");
-            System.out.println("6) To show all available users");}
+                System.out.println("2) To show all available books;");
+                System.out.println("3) To add a new user;");
+                System.out.println("4) To give a certain book to a certain user;");
+                System.out.println("5) To return a book back to the library from user.");
+                System.out.println("6) To show all available users");}
             int choice = in.nextInt();
             in.nextLine();
             switch (choice) {
@@ -64,7 +82,7 @@ public class Main {
                     in.nextLine();
 
                     lib.addBook(new Book(title,isbn,genre,author,year,quantity,clearance));}
-                    break;
+                break;
                 case 2:
                     lib.printbooks();
                     break;
@@ -107,8 +125,8 @@ public class Main {
                             break;
                     }
 
-                    }
-                    break;
+                }
+                break;
                 case 4:
 
                     System.out.println("title");
