@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,6 +13,8 @@ public class Main {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM public.books");
 
 
             connection.close();
